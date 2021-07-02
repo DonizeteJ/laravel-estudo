@@ -62,7 +62,12 @@ class ClienteController extends Controller
     public function store(Request $request)
     {
         $clientes = session('clientes');
-        $id = end($clientes)['id'] + 1;
+        if(count($clientes)==0){
+            $id = 1;
+        }
+        else{
+            $id = end($clientes)['id'] + 1;
+        }
         $nome = $request->nome;
         $dados = ["id" => $id, "nome" => $nome];
         $clientes[] = $dados;

@@ -106,7 +106,15 @@ Route::options('/requisicoes', function(Request $requisicoes){
 });
 */
 
-Route::get('produtos', 'MeuControlador@produtos');
+Route::get('/', function(){
+    return view('Welcome');
+});
+Route::get('departamentos', function(){
+    return view('outras.departamentos');
+})->name('departamentos');
+Route::get('produtos', function(){
+    return view('outras.produtos');
+})->name('produtos');
 Route::get('nome', 'MeuControlador@nome');
 Route::get('multiplicar/{n1}/{n2}', 'MeuControlador@multiplicar');
 
@@ -122,5 +130,12 @@ Route::get('cliente/nome', 'ClienteControlador@update');
 Route::get('cliente/nome', 'ClienteControlador@destroy');
 */
 
+Route::get('opcoes/{opcao?}', function($opcao=null){
+    return view('outras.opcoes', compact(['opcao']));
+})->name('opcoes');
 
+
+Route::get('bootstrap', function(){
+    return view('outras.exemplo');
+})->name('exemplo');
 
